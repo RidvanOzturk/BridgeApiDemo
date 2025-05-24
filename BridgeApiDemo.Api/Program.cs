@@ -10,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddHttpClient(); 
 builder.Services.AddScoped<IProxyService, ProxyService>();
+builder.Services.AddScoped<IWeatherProxyService, WeatherProxyService>();
 
 
 var app = builder.Build();
