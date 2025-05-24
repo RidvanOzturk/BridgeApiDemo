@@ -1,4 +1,5 @@
-using BridgeApiDemo.Services;
+using BridgeApiDemo.Services.Contracts;
+using BridgeApiDemo.Services.Implementations.cs;
 
 var builder = WebApplication.CreateBuilder(args);
 

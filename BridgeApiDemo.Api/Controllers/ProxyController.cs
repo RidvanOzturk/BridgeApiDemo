@@ -1,4 +1,4 @@
-﻿using BridgeApiDemo.Services;
+﻿using BridgeApiDemo.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BridgeApiDemo.Api.Controllers;
@@ -7,10 +7,10 @@ namespace BridgeApiDemo.Api.Controllers;
 [ApiController]
 public class ProxyController(IProxyService proxyService) : ControllerBase
 {
-    [HttpGet("post/{id}")]
-    public async Task<IActionResult> GetPost(int id)
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetData(int id)
     {
-        var result = await proxyService.GetPostAsync(id);
+        var result = await proxyService.GetDataAsync(id);
         if (result == null)
             return StatusCode(502, "Failed to fetch data from external API.");
 
