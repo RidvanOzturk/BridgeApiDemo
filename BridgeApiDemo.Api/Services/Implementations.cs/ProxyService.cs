@@ -10,8 +10,9 @@ public class ProxyService(HttpClient httpClient) : IProxyService
     {
         var response = await httpClient.GetAsync($"https://jsonplaceholder.typicode.com/posts/{id}");
         if (!response.IsSuccessStatusCode)
+        {
             return null;
-
+        }
         var content = await response.Content.ReadAsStringAsync();
         return JsonSerializer.Deserialize<object>(content);
     }

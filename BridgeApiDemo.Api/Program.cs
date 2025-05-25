@@ -11,6 +11,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddHttpClient(); 
 builder.Services.AddScoped<IProxyService, ProxyService>();
 builder.Services.AddScoped<IWeatherProxyService, WeatherProxyService>();
+builder.Services.AddScoped<IJokeProxyService, JokeProxyService>();
 
 
 var app = builder.Build();

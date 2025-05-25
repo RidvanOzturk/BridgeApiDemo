@@ -4,21 +4,20 @@ using System.Net.Http;
 
 namespace BridgeApiDemo.Services.Implementations.cs;
 
-public class WeatherProxyService : IWeatherProxyService
+public class WeatherProxyService(HttpClient httpClient) : IWeatherProxyService
 {
-    private readonly HttpClient _httpClient;
-    private const string ApiKey = "YOUR_API_KEY";
+    private const string ApiKey = "demoapi123";
 
-    public WeatherProxyService(HttpClient httpClient)
-    {
-        _httpClient = httpClient;
-    }
+  
 
     public async Task<string> GetWeatherByCityAsync(string city)
     {
         var url = $"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={ApiKey}&units=metric";
-        var response = await _httpClient.GetAsync(url);
-        response.EnsureSuccessStatusCode();
+        var response = await httpClient.GetAsync(url);
+        if (!response.IsSuccessStatusCode)
+        {
+            return null;
+        }
         return await response.Content.ReadAsStringAsync();
     }
 }
